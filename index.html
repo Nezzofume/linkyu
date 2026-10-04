@@ -3,50 +3,44 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Batch Image Uploader</title>
+<title>Linkyu — Batch Image Uploader</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <main class="app">
   <section class="hero">
     <div>
-      <span class="eyebrow">GitHub Pages + ImgBB</span>
+      <span class="eyebrow">LINKYU</span>
       <h1>Batch Image Uploader</h1>
-      <p>Upload banyak gambar sekaligus dan dapatkan link sesuai urutan.</p>
+      <p>Upload banyak gambar sekaligus. Hasil link tetap sesuai urutan.</p>
     </div>
-    <span id="apiStatus" class="pill">API key belum diisi</span>
+    <span class="pill">Uploader siap</span>
+  </section>
+
+  <section class="panel grid">
+    <label>Jenis link
+      <select id="linkType">
+        <option value="direct">Direct image URL</option>
+        <option value="viewer">Viewer URL</option>
+      </select>
+    </label>
+    <label>Upload bersamaan
+      <select id="concurrency">
+        <option value="1">1 file</option>
+        <option value="2">2 file</option>
+        <option value="3" selected>3 file</option>
+        <option value="4">4 file</option>
+        <option value="5">5 file</option>
+      </select>
+    </label>
   </section>
 
   <section class="panel">
-    <h2>Pengaturan</h2>
-    <div class="grid">
-      <label>ImgBB API Key
-        <div class="inline">
-          <input id="apiKey" type="password" placeholder="Masukkan API key ImgBB">
-          <button id="toggleKey" type="button">Lihat</button>
-        </div>
-      </label>
-      <label>Jenis link
-        <select id="linkType">
-          <option value="direct">Direct image URL</option>
-          <option value="viewer">Viewer URL</option>
-        </select>
-      </label>
-      <label class="check"><input id="rememberKey" type="checkbox"> Simpan API key di browser ini</label>
-      <label>Upload bersamaan
-        <select id="concurrency">
-          <option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option>
-        </select>
-      </label>
-    </div>
-  </section>
-
-  <section class="panel">
-    <div id="dropzone" class="dropzone" tabindex="0">
+    <div id="dropzone" class="dropzone">
       <input id="fileInput" type="file" accept="image/*" multiple hidden>
       <div class="plus">＋</div>
       <h2>Pilih atau drop gambar</h2>
-      <p>Bisa 10, 20, atau lebih. Maksimum 32 MB per gambar.</p>
+      <p>Bisa upload banyak gambar sekaligus.</p>
       <button id="pickFiles" type="button" class="primary">Pilih Gambar</button>
     </div>
   </section>
@@ -77,7 +71,10 @@
       </div>
     </div>
     <textarea id="resultText" readonly placeholder="Link hasil upload akan muncul di sini..."></textarea>
-    <div class="meta"><span id="okCount">0 berhasil</span><span id="failCount">0 gagal</span></div>
+    <div class="meta">
+      <span id="okCount">0 berhasil</span>
+      <span id="failCount">0 gagal</span>
+    </div>
   </section>
 </main>
 <div id="toast" class="toast"></div>
