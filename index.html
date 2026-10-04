@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Batch Image Uploader</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="app">
+  <section class="hero">
+    <div>
+      <span class="eyebrow">GitHub Pages + ImgBB</span>
+      <h1>Batch Image Uploader</h1>
+      <p>Upload banyak gambar sekaligus dan dapatkan link sesuai urutan.</p>
+    </div>
+    <span id="apiStatus" class="pill">API key belum diisi</span>
+  </section>
+
+  <section class="panel">
+    <h2>Pengaturan</h2>
+    <div class="grid">
+      <label>ImgBB API Key
+        <div class="inline">
+          <input id="apiKey" type="password" placeholder="Masukkan API key ImgBB">
+          <button id="toggleKey" type="button">Lihat</button>
+        </div>
+      </label>
+      <label>Jenis link
+        <select id="linkType">
+          <option value="direct">Direct image URL</option>
+          <option value="viewer">Viewer URL</option>
+        </select>
+      </label>
+      <label class="check"><input id="rememberKey" type="checkbox"> Simpan API key di browser ini</label>
+      <label>Upload bersamaan
+        <select id="concurrency">
+          <option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option>
+        </select>
+      </label>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div id="dropzone" class="dropzone" tabindex="0">
+      <input id="fileInput" type="file" accept="image/*" multiple hidden>
+      <div class="plus">＋</div>
+      <h2>Pilih atau drop gambar</h2>
+      <p>Bisa 10, 20, atau lebih. Maksimum 32 MB per gambar.</p>
+      <button id="pickFiles" type="button" class="primary">Pilih Gambar</button>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="head">
+      <div>
+        <h2>Daftar Upload</h2>
+        <p id="queueInfo">Belum ada gambar.</p>
+      </div>
+      <div class="actions">
+        <button id="clearAll" type="button">Hapus Semua</button>
+        <button id="uploadAll" type="button" class="primary">Upload Semua</button>
+      </div>
+    </div>
+    <div id="queue"></div>
+  </section>
+
+  <section class="panel">
+    <div class="head">
+      <div>
+        <h2>Hasil Link</h2>
+        <p>Urutan link mengikuti urutan gambar.</p>
+      </div>
+      <div class="actions">
+        <button id="copyAll" type="button">Copy All</button>
+        <button id="copyNumbered" type="button">Copy Bernomor</button>
+      </div>
+    </div>
+    <textarea id="resultText" readonly placeholder="Link hasil upload akan muncul di sini..."></textarea>
+    <div class="meta"><span id="okCount">0 berhasil</span><span id="failCount">0 gagal</span></div>
+  </section>
+</main>
+<div id="toast" class="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>
